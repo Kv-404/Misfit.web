@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --color-background: #050505;
+  --color-foreground: #f4f4f5;
+  --color-signal: #60a5fa;
+}
+
+:root {
+  color-scheme: dark;
+  --column: min(34rem, calc(100vw - 2.5rem));
+}
+
+html {
+  background: #050505;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #050505;
+  color: #f4f4f5;
+  min-height: 100%;
+}
+
+::selection {
+  background: #60a5fa;
+  color: #050505;
+}
+
+:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 3px;
+}
+
+.feature {
+  --ink: #c4c4c4;
+  --body: #a1a1aa;
+  --mark: #8d8d8d;
+  scroll-margin-top: 28vh;
+}
+
+body[data-tab="home"] [data-feature="home"],
+body[data-tab="shelf"] [data-feature="shelf"],
+body[data-tab="notes"] [data-feature="notes"],
+body[data-tab="stats"] [data-feature="stats"],
+body[data-tab="ports"] [data-feature="ports"],
+body[data-tab="tools"] [data-feature="tools"] {
+  --ink: #f4f4f5;
+  --body: #d4d4d8;
+  --mark: #60a5fa;
+}
+
+.feature h2 {
+  color: var(--ink);
+  transition: color 0.45s ease;
+}
+
+.feature .lede {
+  color: var(--body);
+  transition: color 0.45s ease;
+}
+
+.feature .kicker {
+  color: var(--mark);
+  transition: color 0.45s ease;
+}
+
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.28);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.eq-bar {
+  transform-origin: bottom;
+  animation: eq 1s ease-in-out infinite;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  width: 100%;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.18);
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: white;
+  cursor: pointer;
+}
+
+input[type="range"]:focus-visible {
+  outline-offset: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .eq-bar {
+    animation: none !important;
+    transform: scaleY(0.45);
+  }
+
+  .feature h2,
+  .feature .lede,
+  .feature .kicker {
+    transition: none;
+  }
+}
+
+.reduce-motion .eq-bar {
+  animation: none !important;
+  transform: scaleY(0.45);
+}
